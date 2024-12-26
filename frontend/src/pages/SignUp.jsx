@@ -20,7 +20,7 @@ const SignUp = () => {
         setLoading(true);
 
         try {
-            await axios.post('http://localhost:5555/user/signup', { username, email, password });
+            await axios.post('https://book-store-mern-4.onrender.com/user/signup', { username, email, password });
             enqueueSnackbar('Sign Up successful', { variant: 'success' });
             navigate('/');  
         } catch (error) {
