@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build":"npm i"
+    "build": "npm i"
   },
   "keywords": [],
   "author": "MamadTaheri68",
@@ -23,6 +23,7 @@
     "mern-fullstack-app": "file:..",
     "mongoose": "^7.3.1",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.16",
     "nodemon": "^2.0.22"
   }
 }
