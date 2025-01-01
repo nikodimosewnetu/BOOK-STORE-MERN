@@ -6,7 +6,7 @@ import EditBook from './pages/EditBook';
 import DeleteBook from './pages/DeleteBook';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-
+import EmailConfirmation from './pages/EmailConfirmation';
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +18,7 @@ function App() {
         <Route path="/books/details/:id" element={<ShowBook />} />
         <Route path="/books/edit/:id" element={<EditBook />} />
         <Route path="/books/delete/:id" element={<DeleteBook />} />
-     
+        <Route path="/confirm-email/:token" element={<EmailConfirmation />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>

@@ -21,8 +21,8 @@ const SignUp = () => {
 
         try {
             await axios.post('https://book-store-mern-4.onrender.com/user/signup', { username, email, password });
-            enqueueSnackbar('Sign Up successful! Please check your email to confirm your account.', { variant: 'success' });
-            navigate('/'); // Redirect to login page
+            enqueueSnackbar('Sign Up successful', { variant: 'success' });
+            navigate('/');  
         } catch (error) {
             enqueueSnackbar(error.response?.data?.message || 'Sign up failed', { variant: 'error' });
         } finally {

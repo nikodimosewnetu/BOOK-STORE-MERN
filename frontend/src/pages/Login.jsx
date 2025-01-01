@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
+
   const handleLogin = async () => {
     if (!username || !password) {
       enqueueSnackbar('Username and password are required', { variant: 'warning' });
@@ -20,38 +21,41 @@ const Login = () => {
     setLoading(true);
 
     try {
+      
       const response = await axios.post('https://book-store-mern-4.onrender.com/user/login', { username, password });
 
-      const { token, username: loggedInUsername, emailConfirmed } = response.data;
-
-      if (!emailConfirmed) {
-        enqueueSnackbar('Please confirm your email before logging in.', { variant: 'warning' });
-        return;
-      }
+    
+      const { token, username: loggedInUsername } = response.data;
 
       if (!token) {
         enqueueSnackbar('Token not received from server', { variant: 'error' });
         return;
       }
 
+    
       if (rememberMe) {
         localStorage.setItem('token', token);
       } else {
-        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('token', token); 
       }
       localStorage.setItem('user', loggedInUsername);
 
+     
       enqueueSnackbar('Login successful', { variant: 'success' });
 
+     
       setUsername('');
       setPassword('');
 
+     
       navigate('/home');
     } catch (error) {
+     
       const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
       enqueueSnackbar(errorMessage, { variant: 'error' });
       console.error('Login error:', error);
     } finally {
+      
       setLoading(false);
     }
   };
