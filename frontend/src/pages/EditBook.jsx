@@ -19,7 +19,7 @@ const EditBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`, {
+      .get(`https://book-store-mern-4.onrender.com/books/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}`,
         },
@@ -49,7 +49,7 @@ const EditBook = () => {
     setLoading(true);
     axios
       .put(
-        `http://localhost:5555/books/${id}`,
+        `https://book-store-mern-4.onrender.com/books/${id}`,
         data,
         {
           headers: {

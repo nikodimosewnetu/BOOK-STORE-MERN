@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
     );
 
     // Generate confirmation URL
-    const confirmUrl = `${process.env.CLIENT_URL}/confirm-email/${emailToken}`;
+    const confirmUrl = `${process.env.CLIENT_URL}/confirm-email/?token=${emailToken}`;
 
     // Send confirmation email
     await sendEmail(
@@ -101,8 +101,8 @@ router.post('/login', async (req, res) => {
 });
 
 // Email Confirmation Route
-router.post('/confirm-email/:token', async (req, res) => {
-  const  token  = req.params.token;
+router.post('/confirm-email', async (req, res) => {
+  const { token } = req.query;
   console.log(token)
 
   try {

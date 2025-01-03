@@ -21,7 +21,7 @@ function App() {
         <Route path="/books/delete/:id" element={<DeleteBook />} />
     
         <Route path="*" element={<div>404 Not Found</div>} />
-        <Route path="/confirm-email/:token" element={<EmailConfirmation />} /> 
+        <Route path="/confirm-email" element={<EmailConfirmation />} /> 
       </Routes>
     </BrowserRouter>
   );

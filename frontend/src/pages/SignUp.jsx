@@ -20,7 +20,7 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5555/user/signup', { username, email, password });
+      const response = await axios.post('https://book-store-mern-4.onrender.com/user/signup', { username, email, password });
 
       // Assume backend generates a confirmation token and sends it via email.
       enqueueSnackbar('Sign up successful. Please check your email to confirm.', { variant: 'success' });

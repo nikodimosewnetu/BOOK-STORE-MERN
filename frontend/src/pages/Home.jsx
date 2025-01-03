@@ -29,7 +29,7 @@ const Home = () => {
     if (token) {
       setLoading(true);
       try {
-        const response = await axios.get('https://localhost:5555/books', {
+        const response = await axios.get('https://book-store-mern-4.onrender.com/books', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBooks(response.data);
@@ -47,7 +47,7 @@ const Home = () => {
 
   const handleDeleteBook = async (bookId) => {
     try {
-      await axios.delete(`http://localhost:5555/books/${bookId}`, {
+      await axios.delete(`https://book-store-mern-4.onrender.com/books/${bookId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
      
