@@ -9,29 +9,21 @@ import userRoute from './routes/userRoute.js';
 dotenv.config();
 
 const app = express();
-
-
 app.use(express.json());
-
-
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.status(234).send('Welcome To MERN Stack Tutorial');
-});
-
+app.get('/', (req, res) => res.status(200).send('Welcome to MERN Stack Tutorial!'));
 app.use('/books', booksRoute);
 app.use('/user', userRoute);
 
-// Use the correct MongoDB URL from the environment variable
+
+
 mongoose
   .connect(process.env.MONGO_DB_URL)
   .then(() => {
-    console.log('App connected to database');
+    console.log('Connected to database');
     app.listen(process.env.PORT || 5555, () => {
-      console.log(`App is listening on port ${process.env.PORT || 5555}`);
+      console.log(`Server running on port ${process.env.PORT || 5555}`);
     });
   })
-  .catch((error) => {
-    console.log('Error connecting to database:', error.message);
-  });
+  .catch((error) => console.error('Database connection error:', error.message));

@@ -29,7 +29,7 @@ const DeleteBook = () => {
     setLoading(true);
 
     try {
-      const response = await axios.delete(`https://book-store-mern-4.onrender.com/books/${id}`, {
+      const response = await axios.delete(`http://localhost:5555/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

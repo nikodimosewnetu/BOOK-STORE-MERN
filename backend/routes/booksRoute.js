@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import cloudinary from '../cloudinary.js';
 import { Book } from '../models/bookModel.js';
-import authenticateToken from '../middleware/authMiddleware.js';
+import {authenticateToken} from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 const storage = multer.memoryStorage();

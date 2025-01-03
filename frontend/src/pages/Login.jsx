@@ -11,7 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-
   const handleLogin = async () => {
     if (!username || !password) {
       enqueueSnackbar('Username and password are required', { variant: 'warning' });
@@ -21,41 +20,44 @@ const Login = () => {
     setLoading(true);
 
     try {
-      
-      const response = await axios.post('https://book-store-mern-4.onrender.com/user/login', { username, password });
+      const response = await axios.post('http://localhost:5555/user/login', { username, password });
 
-    
-      const { token, username: loggedInUsername } = response.data;
+      const { token, username: loggedInUsername, emailConfirmed } = response.data;
 
       if (!token) {
         enqueueSnackbar('Token not received from server', { variant: 'error' });
         return;
       }
 
-    
+      if (!emailConfirmed) {
+        enqueueSnackbar('Email not confirmed. Please check your inbox.', { variant: 'warning' });
+
+        // Redirect to the confirmation page with the username
+        navigate(`/confirm-email/${loggedInUsername}`);
+        return;
+      }
+
+      // Store the token based on the "Remember Me" option
       if (rememberMe) {
         localStorage.setItem('token', token);
       } else {
-        sessionStorage.setItem('token', token); 
+        sessionStorage.setItem('token', token);
       }
+
+      // Store username in localStorage for persistence
       localStorage.setItem('user', loggedInUsername);
 
-     
       enqueueSnackbar('Login successful', { variant: 'success' });
 
-     
       setUsername('');
       setPassword('');
 
-     
+      // Redirect to the home page
       navigate('/home');
     } catch (error) {
-     
       const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
       enqueueSnackbar(errorMessage, { variant: 'error' });
-      console.error('Login error:', error);
     } finally {
-      
       setLoading(false);
     }
   };
@@ -77,16 +79,14 @@ const Login = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-          <div className="relative">
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter password"
-            />
-          </div>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter password"
+          />
         </div>
         <div className="mb-4 flex items-center">
           <input

@@ -12,7 +12,7 @@ const ShowBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-    .get(`https://book-store-mern-4.onrender.com/books/${id}`, {
+    .get(`http://localhost:5555/books/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')|| sessionStorage.getItem('token')}`, 
       },
