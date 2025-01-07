@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
     );
 
     // Generate confirmation URL
-    const confirmUrl = `${process.env.CLIENT_URL}/user/confirm-email/?token=${emailToken}`;
+    const confirmUrl = `${process.env.CLIENT_URL}/confirm-email/?token=${emailToken}`;
 
     // Send confirmation email
     await sendEmail(

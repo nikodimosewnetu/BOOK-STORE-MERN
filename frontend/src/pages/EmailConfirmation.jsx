@@ -15,7 +15,7 @@ const EmailConfirmation = () => {
       try {
         const response = await axios.post(`https://book-store-mern-4.onrender.com/user/confirm-email/?token=${token}`);
         setMessage(response.data.message);
-        setLoading(false);
+        setLoading(true);
       } catch (error) {
         setMessage('There was an error confirming your email.');
         setLoading(false);
