@@ -3,9 +3,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/userModel.js';
 import { sendEmail } from '../mailer.js';
-
+import dotenv from 'dotenv'
 const router = express.Router();
-
+dotenv.config();
 // Signup Route
 router.post('/signup', async (req, res) => {
   try {
